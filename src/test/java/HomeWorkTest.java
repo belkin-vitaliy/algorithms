@@ -43,7 +43,7 @@ public class HomeWorkTest {
         assertNotEquals(3, Arrays.binarySearch(doubles,4.4));
 
         List<String> strings = List.of("One", "Three", "Two");
-        String[] stringsArray = strings.stream().toArray(String[]::new);
+        String[] stringsArray = strings.toArray(String[]::new);
         assertEquals(0, Arrays.binarySearch(stringsArray,"One", Comparator.naturalOrder()));
         assertEquals(1, Arrays.binarySearch(stringsArray,"Three", Comparator.naturalOrder()));
         assertEquals(2, Arrays.binarySearch(stringsArray,"Two", Comparator.naturalOrder()));
