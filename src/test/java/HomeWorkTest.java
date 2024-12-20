@@ -1,8 +1,10 @@
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Класс HomeWorkTest включает модульные тесты для проверки функциональности
@@ -32,6 +34,23 @@ public class HomeWorkTest {
         assertBinarySearchResults(array, 3, 1);
         assertBinarySearchResults(array, 4, 2);
         assertBinarySearchResults(array, 5, -4);
+
+        List<Double> values = List.of(1.1, 2.2, 3.3);
+        double[] doubles = values.stream().mapToDouble(Double::doubleValue).toArray();
+        assertEquals(0, Arrays.binarySearch(doubles,1.1));
+        assertEquals(1, Arrays.binarySearch(doubles,2.2));
+        assertEquals(2, Arrays.binarySearch(doubles,3.3));
+        assertNotEquals(3, Arrays.binarySearch(doubles,4.4));
+
+        List<String> strings = List.of("One", "Three", "Two");
+        String[] stringsArray = strings.stream().toArray(String[]::new);
+        assertEquals(0, Arrays.binarySearch(stringsArray,"One", Comparator.naturalOrder()));
+        assertEquals(1, Arrays.binarySearch(stringsArray,"Three", Comparator.naturalOrder()));
+        assertEquals(2, Arrays.binarySearch(stringsArray,"Two", Comparator.naturalOrder()));
+        assertNotEquals(4, Arrays.binarySearch(stringsArray,"Four", Comparator.naturalOrder()));
+
+
+
     }
 
     private void assertBinarySearchResults(List<Integer> list, int key, int expectedIndex) {
